@@ -1,28 +1,28 @@
-<div class="card w-50 mx-auto my-5 bg-dark text-white">
-    <div class="card">
-        <h4 class="card-header bg-dark">Login</h4>
-        <div class="card-body bg-secondary">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                </div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+<div id="login">
+        <div class="card w-50 mx-auto my-5 bg-dark text-white">
+    
+          <div class="container">
+            <h1>Log in</h1>
+            <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+              <div class="form-group">
+                <label for="name">Username</label>
+                <input type="text" [(ngModel)]="user.username" class="form-control" id="name" name="name"
+                  placeholder="Username" required #name="ngModel">
+              </div>
+    
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password"
+                  placeholder="Password" required #password="ngModel">
+    
+              </div>
+              <button type="submit" [disabled]="!userForm.form.valid || loading" class="btn btn-success">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Login</button>
             </form>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-2">{{error}}</div>
+            <div>Don't have an account? <a class="nav-link" routerLink="/signup">Sign up.</a> </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+    

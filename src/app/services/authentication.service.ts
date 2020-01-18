@@ -32,12 +32,15 @@ export class AuthenticationService {
                 this.currentUserSubject.next(user);
                 return user;
             }));
-
     }
 
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+    }
+
+    signup(user: User){
+        return this.http.post(`${environment.apiUrl}/signup`, user)
     }
 }

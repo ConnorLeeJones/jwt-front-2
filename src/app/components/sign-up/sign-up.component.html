@@ -1,0 +1,39 @@
+
+    <div class="card w-50 mx-auto my-5 bg-dark text-white">
+            <div class="container">
+              <h1>Sign up</h1>
+              <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+          
+                <div class="form-group">
+                  <label for="username">*Username</label>
+                  <input [(ngModel)]="user.username" type="text" class="form-control" id="username" name="username"
+                    placeholder="Username" required #username="ngModel">
+                </div>
+        
+        
+                <div class="form-group">
+                  <label for="password">*Password</label>
+                  <input [(ngModel)]="user.password" type="password" class="form-control" id="password" name="password"
+                    placeholder="Password" required #password="ngModel">
+                </div>
+
+                <div class="form-group">
+                        <label for="confirmpassword">*Confirm Password</label>
+                        <input [(ngModel)]="user.token" type="password" class="form-control" id="confirmpassword" name="confirmpassword"
+                          placeholder="Password" required #password="ngModel">
+                      </div>
+                      <div *ngIf="error" class="alert alert-danger mt-3 mb-2">{{error}}</div>
+                      <div *ngIf="success" class="alert alert-primary mt-3 mb-2"> 
+                            Account succesfully created.<a class="nav-link" routerLink="/login">Log in.</a>
+                      </div>
+
+
+        <div>
+                <button type="submit" [disabled]="!userForm.form.valid || loading" class="btn btn-success">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Sign up</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        

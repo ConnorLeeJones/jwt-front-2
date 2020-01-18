@@ -7,6 +7,7 @@ import { AuthenticationService } from './services/authentication.service';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
+    isNavbarCollapsed = false;
     currentUser: User;
 
     constructor(
@@ -17,6 +18,7 @@ export class AppComponent {
     }
 
     logout() {
+        this.isNavbarCollapsed = false;
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
