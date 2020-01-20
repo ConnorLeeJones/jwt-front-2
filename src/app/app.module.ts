@@ -8,9 +8,11 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptor } from './utilities/jwt-interceptor';
 import { ErrorInterceptor } from './utilities/error-interceptor';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
